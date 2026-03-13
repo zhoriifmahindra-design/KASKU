@@ -1,25 +1,25 @@
 {
-  "name": "KASKU - Aplikasi Kas",
-  "short_name": "KASKU",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#2c7be5",
+"name": "KASKU - Aplikasi Kas",
+"short_name": "KASKU",
+"start_url": "./index.html",
+"scope": "./",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#ffffff",
+"theme_color": "#2c7be5",
 
-  "icons": [
-    {
-      "src": "img_iconkas.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "img_iconkas.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+"icons":[
+{
+"src":"img_iconkas.png",
+"sizes":"192x192",
+"type":"image/png",
+"purpose":"any maskable"
+},
+{
+"src":"img_iconkas.png",
+"sizes":"512x512",
+"type":"image/png",
+"purpose":"any maskable"
+}
+]
 }

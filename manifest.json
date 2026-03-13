@@ -1,0 +1,8 @@
+{
+"name":"Kas Manager",
+"short_name":"Kas",
+"display":"standalone",
+"start_url":"index.html",
+"background_color":"#ffffff",
+"theme_color":"#2563eb"
+}

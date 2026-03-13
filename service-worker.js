@@ -1,4 +1,4 @@
-const CACHE_NAME = "kasku-v1";
+const CACHE_NAME = "kasku-v2";
 
 const urlsToCache = [
 "./",
@@ -15,6 +15,24 @@ event.waitUntil(
 caches.open(CACHE_NAME)
 .then(function(cache){
 return cache.addAll(urlsToCache);
+})
+);
+
+self.skipWaiting();
+
+});
+
+self.addEventListener("activate", function(event){
+
+event.waitUntil(
+caches.keys().then(function(cacheNames){
+return Promise.all(
+cacheNames.map(function(cache){
+if(cache !== CACHE_NAME){
+return caches.delete(cache);
+}
+})
+);
 })
 );
 

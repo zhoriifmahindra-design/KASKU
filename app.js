@@ -1,102 +1,108 @@
-let data = JSON.parse(localStorage.getItem("kas")) || [];
+let dataKas = JSON.parse(localStorage.getItem("dataKas")) || [];
 
-let chart;
+function tampilkanTanggal(){
 
-function render(){
+const hari = new Date();
 
-let masuk=0;
-let keluar=0;
+const opsi = {
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+};
 
-let html="";
+document.getElementById("tanggal").innerText =
+hari.toLocaleDateString('id-ID',opsi);
 
-data.forEach((t,i)=>{
-
-if(t.jenis=="MASUK"){
-masuk+=t.jumlah;
-}else{
-keluar+=t.jumlah;
 }
 
-html+=`
-<li>
+tampilkanTanggal();
 
-<div>
-<strong>${t.ket}</strong>
-</div>
+function simpan(){
 
-<div>
+localStorage.setItem("dataKas",JSON.stringify(dataKas));
 
-Rp ${t.jumlah}
+}
 
-<button onclick="hapus(${i})">❌</button>
+function tambahData(){
 
-</div>
+const ket = document.getElementById("keterangan").value;
+const masuk = parseInt(document.getElementById("masuk").value) || 0;
+const keluar = parseInt(document.getElementById("keluar").value) || 0;
 
-</li>
-`;
+const tanggal = new Date().toLocaleDateString('id-ID');
+
+let saldo = 0;
+
+if(dataKas.length>0){
+saldo = dataKas[dataKas.length-1].saldo;
+}
+
+saldo = saldo + masuk - keluar;
+
+dataKas.push({
+tanggal: tanggal,
+ket: ket,
+masuk: masuk,
+keluar: keluar,
+saldo: saldo
+});
+
+simpan();
+tampilData();
+
+}
+
+function tampilData(){
+
+const tabel = document.getElementById("tabelData");
+
+tabel.innerHTML="";
+
+dataKas.forEach((d,i)=>{
+
+const row = tabel.insertRow();
+
+row.insertCell(0).innerText=d.tanggal;
+row.insertCell(1).innerText=d.ket;
+row.insertCell(2).innerText=d.masuk;
+row.insertCell(3).innerText=d.keluar;
+row.insertCell(4).innerText=d.saldo;
+
+const aksi = row.insertCell(5);
+
+const btnEdit = document.createElement("button");
+btnEdit.innerText="Edit";
+
+btnEdit.onclick=function(){
+
+const baru = prompt("Edit keterangan",d.ket);
+
+if(baru){
+dataKas[i].ket = baru;
+simpan();
+tampilData();
+}
+
+}
+
+const btnHapus = document.createElement("button");
+btnHapus.innerText="Hapus";
+
+btnHapus.onclick=function(){
+
+dataKas.splice(i,1);
+
+simpan();
+tampilData();
+
+}
+
+aksi.appendChild(btnEdit);
+aksi.appendChild(btnHapus);
 
 });
 
-let saldo=masuk-keluar;
-
-document.getElementById("saldo").innerText=saldo;
-document.getElementById("masuk").innerText=masuk;
-document.getElementById("keluar").innerText=keluar;
-
-document.getElementById("list").innerHTML=html;
-
-localStorage.setItem("kas",JSON.stringify(data));
-
-drawChart(masuk,keluar);
-
 }
 
-function tambah(){
-
-let ket=document.getElementById("ket").value;
-let jenis=document.getElementById("jenis").value;
-let jumlah=Number(document.getElementById("jumlah").value);
-
-data.push({
-ket,
-jenis,
-jumlah
-});
-
-render();
-
-}
-
-function hapus(i){
-
-data.splice(i,1);
-
-render();
-
-}
-
-function darkMode(){
-document.body.classList.toggle("dark");
-}
-
-function drawChart(masuk,keluar){
-
-let ctx=document.getElementById("chart");
-
-if(chart){
-chart.destroy();
-}
-
-chart=new Chart(ctx,{
-type:"doughnut",
-data:{
-labels:["Masuk","Keluar"],
-datasets:[{
-data:[masuk,keluar]
-}]
-}
-});
-
-}
-
-render();
+tampilData();

@@ -36,9 +36,18 @@ return new Intl.NumberFormat('id-ID').format(angka);
 /* TAMBAH DATA */
 function tambahData(){
 
+const tanggal = document.getElementById("tanggalInput").value;
+
 const ket = document.getElementById("keterangan").value.trim();
+
 const masuk = parseInt(document.getElementById("masuk").value) || 0;
+
 const keluar = parseInt(document.getElementById("keluar").value) || 0;
+
+if(tanggal === ""){
+alert("Tanggal harus dipilih");
+return;
+}
 
 if(ket === ""){
 alert("Keterangan harus diisi");
@@ -50,26 +59,23 @@ alert("Masukkan kas masuk atau kas keluar");
 return;
 }
 
-const tanggal = new Date().toLocaleDateString('id-ID');
-
 dataKas.push({
-tanggal: tanggal,
-ket: ket,
-masuk: masuk,
-keluar: keluar
+tanggal:tanggal,
+ket:ket,
+masuk:masuk,
+keluar:keluar
 });
 
-/* hitung saldo ulang */
 hitungSaldo();
 
 simpan();
+
 tampilData();
 
-/* kosongkan input */
+document.getElementById("tanggalInput").value="";
 document.getElementById("keterangan").value="";
 document.getElementById("masuk").value="";
 document.getElementById("keluar").value="";
-
 }
 
 /* HITUNG SALDO */

@@ -33,6 +33,13 @@ return new Intl.NumberFormat('id-ID').format(angka);
 
 }
 
+/* HAPUS FORMAT RUPIAH */
+function bersihAngka(teks){
+
+return parseInt(teks.replace(/[^0-9]/g,'')) || 0;
+
+}
+
 /* TAMBAH DATA */
 function tambahData(){
 
@@ -40,9 +47,10 @@ const tanggal = document.getElementById("tanggalInput").value;
 
 const ket = document.getElementById("keterangan").value.trim();
 
-const masuk = parseInt(document.getElementById("masuk").value) || 0;
+/* ambil angka tanpa format */
+const masuk = bersihAngka(document.getElementById("masuk").value);
 
-const keluar = parseInt(document.getElementById("keluar").value) || 0;
+const keluar = bersihAngka(document.getElementById("keluar").value);
 
 if(tanggal === ""){
 alert("Tanggal harus dipilih");
@@ -106,9 +114,9 @@ const row = tabel.insertRow();
 
 row.insertCell(0).innerText = d.tanggal;
 row.insertCell(1).innerText = d.ket;
-row.insertCell(2).innerText = rupiah(d.masuk);
-row.insertCell(3).innerText = rupiah(d.keluar);
-row.insertCell(4).innerText = rupiah(d.saldo);
+row.insertCell(2).innerText = "Rp " + rupiah(d.masuk);
+row.insertCell(3).innerText = "Rp " + rupiah(d.keluar);
+row.insertCell(4).innerText = "Rp " + rupiah(d.saldo);
 
 /* tombol aksi */
 const aksi = row.insertCell(5);

@@ -10,14 +10,15 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- manifest PWA -->
 <link rel="manifest" href="manifest.json">
-
-<!-- icon browser -->
 <link rel="icon" href="img_iconkas.png">
 
-<!-- warna theme -->
 <meta name="theme-color" content="#2c7be5">
+
+<!-- iOS support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="img_iconkas.png">
 
 </head>
 
@@ -30,9 +31,7 @@
 <h3>Input Data</h3>
 
 <input id="keterangan" type="text" placeholder="Keterangan">
-
 <input id="masuk" type="number" placeholder="Kas Masuk">
-
 <input id="keluar" type="number" placeholder="Kas Keluar">
 
 <button onclick="tambahData()">Simpan</button>
@@ -60,7 +59,9 @@
 
 <script>
 if ('serviceWorker' in navigator) {
+window.addEventListener('load', function(){
 navigator.serviceWorker.register('service-worker.js');
+});
 }
 </script>
 

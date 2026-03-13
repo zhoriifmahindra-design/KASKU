@@ -77,4 +77,13 @@ table{
 font-size:12px;
 }
 
+#saldoCard{
+background:#2c7be5;
+color:white;
+padding:15px;
+border-radius:8px;
+text-align:center;
+margin-bottom:20px;
+}
+
 }

@@ -154,6 +154,8 @@ aksi.appendChild(btnHapus);
 
 });
 
+document.getElementById("saldoCard").innerText =
+"Saldo : Rp " + rupiah(dataKas.length ? dataKas[dataKas.length-1].saldo : 0);
 }
 
 /* LOAD DATA */

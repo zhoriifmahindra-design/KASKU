@@ -14,7 +14,7 @@
 <link rel="manifest" href="manifest.json">
 
 <!-- icon browser -->
-<link rel="icon" href="icon-192.png">
+<link rel="icon" href="img_iconkas.png">
 
 <!-- warna theme -->
 <meta name="theme-color" content="#2c7be5">
@@ -29,7 +29,7 @@
 
 <h3>Input Data</h3>
 
-<input id="keterangan" placeholder="Keterangan">
+<input id="keterangan" type="text" placeholder="Keterangan">
 
 <input id="masuk" type="number" placeholder="Kas Masuk">
 
@@ -39,7 +39,7 @@
 
 <h3>Data Kas</h3>
 
-<table border="1">
+<table>
 
 <thead>
 <tr>
@@ -59,11 +59,9 @@
 <script src="app.js"></script>
 
 <script>
-
 if ('serviceWorker' in navigator) {
 navigator.serviceWorker.register('service-worker.js');
 }
-
 </script>
 
 </body>

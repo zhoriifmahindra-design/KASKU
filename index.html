@@ -1,69 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
+
 <head>
 
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Kasku</title>
+<title>KASKU</title>
 
 <link rel="stylesheet" href="style.css">
+
+<!-- manifest PWA -->
 <link rel="manifest" href="manifest.json">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- icon browser -->
+<link rel="icon" href="icon-192.png">
+
+<!-- warna theme -->
+<meta name="theme-color" content="#2c7be5">
 
 </head>
 
 <body>
 
-<header>
+<h1>KASKU - Aplikasi Kas</h1>
 
-<h1>Kas Manager</h1>
+<div id="tanggal"></div>
 
-<button onclick="darkMode()">🌙</button>
+<h3>Input Data</h3>
 
-</header>
+<input id="keterangan" placeholder="Keterangan">
 
-<div class="dashboard">
+<input id="masuk" type="number" placeholder="Kas Masuk">
 
-<div class="card saldo">
-Saldo
-<h2 id="saldo">0</h2>
-</div>
+<input id="keluar" type="number" placeholder="Kas Keluar">
 
-<div class="card">
-Masuk
-<h3 id="masuk">0</h3>
-</div>
+<button onclick="tambahData()">Simpan</button>
 
-<div class="card">
-Keluar
-<h3 id="keluar">0</h3>
-</div>
+<h3>Data Kas</h3>
 
-</div>
+<table border="1">
 
-<canvas id="chart"></canvas>
+<thead>
+<tr>
+<th>Tanggal</th>
+<th>Keterangan</th>
+<th>Masuk</th>
+<th>Keluar</th>
+<th>Saldo</th>
+<th>Aksi</th>
+</tr>
+</thead>
 
-<div class="form">
+<tbody id="tabelData"></tbody>
 
-<input id="ket" placeholder="Keterangan">
-
-<select id="jenis">
-<option value="MASUK">Pemasukan</option>
-<option value="KELUAR">Pengeluaran</option>
-</select>
-
-<input id="jumlah" type="number" placeholder="Jumlah">
-
-<button onclick="tambah()">Tambah</button>
-
-</div>
-
-<h3>Riwayat</h3>
-
-<ul id="list"></ul>
+</table>
 
 <script src="app.js"></script>
+
+<script>
+
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('service-worker.js');
+}
+
+</script>
 
 </body>
 </html>
